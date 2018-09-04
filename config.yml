@@ -1,0 +1,11 @@
+http:
+  port: :8000
+  admin:
+    prefix: /admin
+
+db:
+  type: mysql
+  url: com.mysql.jdbc
+  username: root
+  password: root
+
