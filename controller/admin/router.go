@@ -22,6 +22,7 @@ func (router *AdminRouter) Routing(g *echo.Group) {
 	router.group = g
 	userController := new(UserController)
 	router.httpGet("/get", userController.Get)
+	router.httpGet("/get/:id", userController.Get1)
 }
 
 func (router *AdminRouter) httpMethod(method int, path string, ctrFunc ControllerFunc) {

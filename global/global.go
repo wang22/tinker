@@ -1,7 +1,6 @@
 package global
 
 import (
-	"github.com/jinzhu/gorm"
 	"github.com/wang22/tinker/db"
 )
 
@@ -18,8 +17,8 @@ func SetDataBase(db *db.DataBase) {
 	databaseSeted = true
 }
 
-func DB() *gorm.DB {
-	return database.Config.DB
+func DB() *db.DataBase {
+	return database
 }
 
 // ================== /DataBase ==================
