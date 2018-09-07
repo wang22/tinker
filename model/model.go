@@ -4,10 +4,6 @@ import (
 	"time"
 )
 
-type ModelInterface interface {
-	Insert()
-}
-
 type Model struct {
 	ID       int `gorm:"primary_key"`
 	Created  time.Time
