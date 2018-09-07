@@ -1,9 +1,10 @@
 package common
 
 import (
+	"net/http"
+
 	"github.com/labstack/echo"
 	"github.com/wang22/tinker/model"
-	"net/http"
 )
 
 type HTTPContext struct {
@@ -24,11 +25,9 @@ func (ctx *HTTPContext) JSON(code int, i interface{}) error {
 }
 
 func (ctx *HTTPContext) JSONOK() error {
-	result := model.HTTPJSONResult{http.StatusOK, "ok", ctx.Param}
-	return ctx.Context.JSON(http.StatusOK, result)
+	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusOK, "ok", ctx.Param})
 }
 
 func (ctx *HTTPContext) JSONErr() error {
-	result := model.HTTPJSONResult{http.StatusInternalServerError, "error", ctx.Param}
-	return ctx.Context.JSON(http.StatusOK, result)
+	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusInternalServerError, "error", ctx.Param})
 }

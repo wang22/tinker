@@ -1,6 +1,15 @@
 package config
 
 const (
-	CONST_HTTP_PORT = "http.port"
-	CONST_HTTP_ADMIN_PREFIX = "http.admin.prefix"
+	// HTTP Config
+	ConstHttpPort        = "http.port"
+	ConstHttpAdminPrefix = "http.admin.prefix"
+
+	// DB Config
+	ConstDBType     = "db.type"
+	ConstDBName     = "db.dbname"
+	ConstDBPort     = "db.port"
+	ConstDBHost     = "db.host"
+	ConstDBUsername = "db.username"
+	ConstDBPassword = "db.password"
 )

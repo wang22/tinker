@@ -19,7 +19,7 @@ type AdminRouter struct {
 }
 
 func (router *AdminRouter) Routing(g *echo.Group) {
-	router.group = g;
+	router.group = g
 	userController := new(UserController)
 	router.httpGet("/get", userController.Get)
 }
