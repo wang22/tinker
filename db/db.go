@@ -10,21 +10,23 @@ import (
 )
 
 type DBConfig struct {
-	DB       *gorm.DB
-	DBType   string
-	DBName   string
-	Port     int
-	Host     string
-	Username string
-	Password string
+	DB          *gorm.DB
+	DBType      string
+	DBName      string
+	Port        int
+	Host        string
+	Username    string
+	Password    string
+	TablePrefix string
 }
 
-type DataBase struct{}
+type DataBase struct {
+	Config *DBConfig
+}
 
-func (DataBase) Init(dbc DBConfig) error {
+func (db *DataBase) Init(dbc *DBConfig) error {
 	if dbc.DBType == "mysql" {
 		conn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local", dbc.Username, dbc.Password, dbc.Host, dbc.Port, dbc.DBName)
-		fmt.Println(conn)
 		db, err := gorm.Open("mysql", conn)
 		if err != nil {
 			return err
@@ -35,5 +37,10 @@ func (DataBase) Init(dbc DBConfig) error {
 	} else {
 		return errors.New("Unsupport database type:" + dbc.DBType)
 	}
+	dbc.DB.SingularTable(true)
+	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
+		return dbc.TablePrefix + defaultTableName
+	}
+	db.Config = dbc
 	return nil
 }

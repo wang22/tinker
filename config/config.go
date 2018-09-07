@@ -4,18 +4,18 @@ import (
 	"github.com/kylelemons/go-gypsy/yaml"
 )
 
-var Config *yaml.File
+var config *yaml.File
 
-func Initial(yamlFile string){
+func Initial(yamlFile string) {
 	var err error
-	Config, err = yaml.ReadFile(yamlFile)
+	config, err = yaml.ReadFile(yamlFile)
 	if err != nil {
 		panic(err)
 	}
 }
 
 func Get(key string) string {
-	value, err := Config.Get(key)
+	value, err := config.Get(key)
 	if err != nil {
 		panic(err)
 	}
@@ -23,7 +23,7 @@ func Get(key string) string {
 }
 
 func GetInt(key string) int {
-	value, err := Config.GetInt(key)
+	value, err := config.GetInt(key)
 	if err != nil {
 		panic(err)
 	}
@@ -31,7 +31,7 @@ func GetInt(key string) int {
 }
 
 func GetBool(key string) bool {
-	value, err := Config.GetBool(key)
+	value, err := config.GetBool(key)
 	if err != nil {
 		panic(err)
 	}
