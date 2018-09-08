@@ -2,6 +2,7 @@ http:
   port: :8000
   admin:
     prefix: /admin
+  authCookieKey: token
 
 db:
   type: mysql

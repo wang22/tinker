@@ -18,4 +18,7 @@ const (
 	// Cache Config
 	ConstCacheType = "cache.type"
 	ConstCacheSize = "cache.size"
+
+	// Cookie Config
+	ConstAuthCookieKey = "http.authCookieKey"
 )

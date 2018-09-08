@@ -1,11 +1,23 @@
 package service
 
 import (
-	"github.com/wang22/tinker/db"
+	"github.com/wang22/tinker/common"
+	"github.com/wang22/tinker/model"
 )
 
-var AdminDB *db.AdminDB
+// =========== Init service ===========
+var Admin *AdminService
 
 func Init() {
-	AdminDB = &db.AdminDB{}
+	Admin = &AdminService{}
+}
+
+// =========== Init service ===========
+
+type AdminService struct{}
+
+func (AdminService) FindByUsername(username string) *model.Admin {
+	admin := &model.Admin{}
+	common.GormDB().Where("username = ?", username).First(admin)
+	return admin
 }

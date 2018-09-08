@@ -34,7 +34,7 @@ func (ctx *HTTPContext) JSONErr(msg string) error {
 	if msg == "" {
 		msg = "err"
 	}
-	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusInternalServerError, msg, ctx.Params})
+	return ctx.Context.JSON(http.StatusInternalServerError, model.HTTPJSONResult{http.StatusInternalServerError, msg, ctx.Params})
 }
 
 func (ctx *HTTPContext) Param(name string) string {
@@ -50,6 +50,11 @@ func (ctx *HTTPContext) ParamInt(name string) int {
 	}
 	return number
 }
+
 func (ctx *HTTPContext) Bind(i interface{}) error {
 	return ctx.Context.Bind(i)
+}
+
+func (ctx *HTTPContext) SetCookie(cookie *http.Cookie) {
+	ctx.Context.SetCookie(cookie)
 }
