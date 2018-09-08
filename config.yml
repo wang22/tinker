@@ -12,3 +12,12 @@ db:
   password: 123456
   tablePrefix: t_
   logEnable: false
+
+cache:
+  type: redis
+  host: localhost
+  port: 1234
+  username: root
+  password: root
+  # type: gocache
+  # size: 104857600

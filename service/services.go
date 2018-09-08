@@ -1,4 +1,4 @@
-package global
+package service
 
 import (
 	"github.com/wang22/tinker/db"

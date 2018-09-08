@@ -14,4 +14,8 @@ const (
 	ConstDBPassword    = "db.password"
 	ConstDBTablePrefix = "db.tablePrefix"
 	ConstDBLogEnable   = "db.logEnable"
+
+	// Cache Config
+	ConstCacheType = "cache.type"
+	ConstCacheSize = "cache.size"
 )
