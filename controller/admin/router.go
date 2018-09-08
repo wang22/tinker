@@ -27,7 +27,7 @@ func (router *AdminRouter) Routing(g *echo.Group) {
 
 func (router *AdminRouter) httpMethod(method int, path string, ctrFunc ControllerFunc) {
 	ctx := common.HTTPContext{}
-	ctx.Param = make(map[string]interface{})
+	ctx.Params = make(map[string]interface{})
 	if method == MethodGet {
 		router.group.GET(path, func(context echo.Context) error {
 			ctx.Context = context

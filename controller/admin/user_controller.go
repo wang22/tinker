@@ -1,8 +1,6 @@
 package controller_admin
 
 import (
-	"strconv"
-
 	"github.com/wang22/tinker/common"
 	"github.com/wang22/tinker/global"
 	"github.com/wang22/tinker/model"
@@ -20,10 +18,9 @@ func (UserController) Get(ctx common.HTTPContext) error {
 }
 
 func (UserController) Get1(ctx common.HTTPContext) error {
-	tmp := ctx.Context.Param("id")
+	id := ctx.ParamInt("id")
 	ctx.Put("sss", "sdfsdf")
 
-	id, _ := strconv.Atoi(tmp)
 	global.DB().DeleteByID(&model.Admin{}, id)
 	return ctx.JSONOK()
 }
