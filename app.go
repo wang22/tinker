@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/labstack/echo"
+	"github.com/wang22/tinker/common"
 	"github.com/wang22/tinker/config"
 	"github.com/wang22/tinker/controller/admin"
-	"github.com/wang22/tinker/db"
 	"github.com/wang22/tinker/global"
 )
 
-func createDBConfig() *db.DBConfig {
-	dbc := &db.DBConfig{}
+func createDBConfig() *common.DBConfig {
+	dbc := &common.DBConfig{}
 	dbc.DBType = config.Get(config.ConstDBType)
 	dbc.DBName = config.Get(config.ConstDBName)
 	dbc.Port = config.GetInt(config.ConstDBPort)
@@ -23,12 +23,13 @@ func createDBConfig() *db.DBConfig {
 
 func initial() {
 	config.Initial("config.yml")
-	database := &db.DataBase{}
+	database := &common.DataBase{}
 	err := database.Init(createDBConfig())
 	if err != nil {
 		panic(err)
 	}
-	global.SetDataBase(database)
+	common.SetDataBase(database)
+	global.Init()
 }
 
 func main() {

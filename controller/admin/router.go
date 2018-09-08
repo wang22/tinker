@@ -20,31 +20,40 @@ type AdminRouter struct {
 
 func (router *AdminRouter) Routing(g *echo.Group) {
 	router.group = g
-	userController := new(UserController)
-	router.httpGet("/get", userController.Get)
-	router.httpGet("/get/:id", userController.Get1)
+	// userController := new(UserController)
+	// router.httpGet("/get", userController.Get)
+	// router.httpGet("/get/:id", userController.Get1)
+
+	adminController := new(AdminController)
+	router.httpPost("/auth/login", adminController.Login)
 }
 
 func (router *AdminRouter) httpMethod(method int, path string, ctrFunc ControllerFunc) {
-	ctx := common.HTTPContext{}
-	ctx.Params = make(map[string]interface{})
 	if method == MethodGet {
 		router.group.GET(path, func(context echo.Context) error {
+			ctx := common.HTTPContext{}
+			ctx.Params = make(map[string]interface{})
 			ctx.Context = context
 			return ctrFunc(ctx)
 		})
 	} else if method == MethodPost {
 		router.group.POST(path, func(context echo.Context) error {
+			ctx := common.HTTPContext{}
+			ctx.Params = make(map[string]interface{})
 			ctx.Context = context
 			return ctrFunc(ctx)
 		})
 	} else if method == MethodPut {
 		router.group.PUT(path, func(context echo.Context) error {
+			ctx := common.HTTPContext{}
+			ctx.Params = make(map[string]interface{})
 			ctx.Context = context
 			return ctrFunc(ctx)
 		})
 	} else if method == MethodDelete {
 		router.group.DELETE(path, func(context echo.Context) error {
+			ctx := common.HTTPContext{}
+			ctx.Params = make(map[string]interface{})
 			ctx.Context = context
 			return ctrFunc(ctx)
 		})

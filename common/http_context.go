@@ -27,11 +27,14 @@ func (ctx *HTTPContext) JSON(code int, i interface{}) error {
 }
 
 func (ctx *HTTPContext) JSONOK() error {
-	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusOK, "ok", ctx.Param})
+	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusOK, "ok", ctx.Params})
 }
 
-func (ctx *HTTPContext) JSONErr() error {
-	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusInternalServerError, "error", ctx.Param})
+func (ctx *HTTPContext) JSONErr(msg string) error {
+	if msg == "" {
+		msg = "err"
+	}
+	return ctx.Context.JSON(http.StatusOK, model.HTTPJSONResult{http.StatusInternalServerError, msg, ctx.Params})
 }
 
 func (ctx *HTTPContext) Param(name string) string {
@@ -46,4 +49,7 @@ func (ctx *HTTPContext) ParamInt(name string) int {
 		return -1
 	}
 	return number
+}
+func (ctx *HTTPContext) Bind(i interface{}) error {
+	return ctx.Context.Bind(i)
 }

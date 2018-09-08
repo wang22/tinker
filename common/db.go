@@ -1,4 +1,4 @@
-package db
+package common
 
 import (
 	"errors"
@@ -25,22 +25,6 @@ type DBConfig struct {
 type DataBase struct {
 	Config *DBConfig
 }
-
-// func (db *DataBase) updateCreated(scope *gorm.Scope) {
-// 	if scope.HasColumn("Created") {
-// 		scope.Set("Created", time.Now())
-// 	}
-// 	if scope.HasColumn("Modified") {
-// 		scope.Set("Modified", time.Now())
-// 	}
-// 	if scope.HasColumn("Deleted") {
-// 		deleteTime, _ := time.Parse("2006-01-02 15:04:05", "2000-01-01 00:00:00")
-// 		scope.Set("Deleted", deleteTime)
-// 	}
-// 	if scope.HasColumn("Avatar") {
-// 		scope.SetColumn("Avatar", "deleteTime")
-// 	}
-// }
 
 func (db *DataBase) Init(dbc *DBConfig) error {
 	if dbc.DBType == "mysql" {
@@ -99,3 +83,25 @@ func (db *DataBase) DeleteByID(model interface{}, ID int) {
 func (db *DataBase) FetchByID(model interface{}, ID int) {
 	db.Config.DB.First(model, ID)
 }
+
+// ================== DataBase ==================
+var database *DataBase
+var databaseSeted = false
+
+func SetDataBase(db *DataBase) {
+	if databaseSeted {
+		return
+	}
+	database = db
+	databaseSeted = true
+}
+
+func DB() *DataBase {
+	return database
+}
+
+func GormDB() *gorm.DB {
+	return database.Config.DB
+}
+
+// ================== /DataBase ==================
