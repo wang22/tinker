@@ -17,6 +17,7 @@ func createDBConfig() *db.DBConfig {
 	dbc.Username = config.Get(config.ConstDBUsername)
 	dbc.Password = config.Get(config.ConstDBPassword)
 	dbc.TablePrefix = config.Get(config.ConstDBTablePrefix)
+	dbc.LogEnable = config.GetBool(config.ConstDBLogEnable)
 	return dbc
 }
 

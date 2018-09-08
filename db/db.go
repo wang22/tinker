@@ -19,6 +19,7 @@ type DBConfig struct {
 	Username    string
 	Password    string
 	TablePrefix string
+	LogEnable   bool
 }
 
 type DataBase struct {
@@ -58,7 +59,7 @@ func (db *DataBase) Init(dbc *DBConfig) error {
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return dbc.TablePrefix + defaultTableName
 	}
-	// dbc.DB.Callback().Create().Register("update_created_at", db.updateCreated)
+	dbc.DB.LogMode(dbc.LogEnable)
 	db.Config = dbc
 	return nil
 }

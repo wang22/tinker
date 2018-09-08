@@ -13,4 +13,5 @@ const (
 	ConstDBUsername    = "db.username"
 	ConstDBPassword    = "db.password"
 	ConstDBTablePrefix = "db.tablePrefix"
+	ConstDBLogEnable   = "db.logEnable"
 )

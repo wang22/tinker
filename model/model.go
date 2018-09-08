@@ -14,6 +14,7 @@ type Model struct {
 func (model *Model) InsertHook() {
 	model.Created = time.Now()
 	model.Modified = time.Now()
+	model.Deleted = time.Unix(0, 0)
 }
 
 func (model *Model) UpdateHook() {
