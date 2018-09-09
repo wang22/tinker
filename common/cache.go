@@ -32,9 +32,11 @@ type GOCacher struct {
 }
 
 func (self *GOCacher) Set(key string, val interface{}) {
+	// self.SetTTL(key,val, math.MaxInt32)
 }
 
 func (self *GOCacher) SetTTL(key string, val interface{}, expire int) {
+	self.Cache.Set([]byte(key),[]byte(key), expire)
 }
 
 func (self *GOCacher) Get(key string) {
